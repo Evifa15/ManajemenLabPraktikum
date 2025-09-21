@@ -1,0 +1,759 @@
+/* File: public/css/main-style.css */
+
+:root {
+    --primary-green: #4CAF50;
+    --light-green: #E6F4EA;
+    --dark-green: #1E4620;
+    --accent-orange: #FB8C00;
+    --text-dark: #333;
+    --text-light: #555;
+    --border-color: #e9ecef;
+    --background-grey: #f0f2f5;
+}
+
+body {
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background-grey);
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* ======================================================= */
+/* ===                GAYA SIDEBAR BARU                === */
+/* ======================================================= */
+.sidebar {
+    width: var(--sidebar-width, 16rem);
+    padding: 1.25rem;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+    transition: width 0.6s ease;
+    flex-shrink: 0;
+}
+
+
+.sidebar-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
+    height: 40px;
+    gap: 1rem;
+}
+
+.sidebar-toggle-btn {
+    background-color: var(--light-green);
+    color: var(--primary-green);
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.sidebar-toggle-btn:hover {
+    background-color: var(--primary-green);
+    color: #ffffff;
+}
+
+.sidebar-toggle-btn svg {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar.collapsed .sidebar-toggle-btn svg {
+    transform: rotate(180deg);
+}
+
+.sidebar-section {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-section:last-of-type {
+    border-bottom: none;
+}
+
+.sidebar-content-wrapper {
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    padding: 0.85rem 1rem;
+    border-radius: 0.5rem;
+    margin: 0.5rem 0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    color: var(--text-light);
+    border-left: 4px solid transparent;
+}
+
+.sidebar-item:hover {
+    background-color: var(--background-grey);
+    transform: translateX(4px);
+}
+
+.active-link {
+    background-color: var(--light-green);
+    border-left: 4px solid var(--primary-green);
+    color: var(--primary-green);
+    font-weight: 600;
+}
+
+/* Gaya baru untuk memastikan ikon seragam */
+.sidebar-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    width: 2rem;
+    margin-right: 1rem;
+}
+
+.sidebar-item svg,
+.sidebar-item img,
+.logout-button svg,
+.logout-button img {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: currentColor;
+}
+
+.sidebar-item span,
+.logout-button span {
+    white-space: nowrap;
+    overflow: hidden;
+    transition: opacity 0.2s ease, width 0.2s ease;
+}
+
+.sidebar.collapsed {
+    width: 5.5rem;
+}
+
+.sidebar.collapsed .sidebar-header {
+    justify-content: center;
+}
+
+.sidebar.collapsed .sidebar-toggle-btn {
+    margin: 0;
+}
+
+.sidebar.collapsed .sidebar-item span:not(.sidebar-icon-wrapper),
+.sidebar.collapsed .logout-button span:not(.sidebar-icon-wrapper) {
+    opacity: 0;
+    visibility: hidden;
+    width: 0;
+}
+
+.sidebar.collapsed .sidebar-item,
+.sidebar.collapsed .logout-button {
+    justify-content: center;
+}
+
+.sidebar.collapsed .sidebar-icon-wrapper {
+    margin-right: 0;
+    width: auto;
+}
+
+.logout-button-wrapper {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.logout-button {
+    display: flex;
+    align-items: center;
+    padding: 0.85rem 1rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    color: #d32f2f;
+    font-weight: 500;
+    border-left: 4px solid transparent;
+}
+
+.logout-button:hover {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+/* ======================================================= */
+/* ===         KONTEN UTAMA & LAIN-LAIN                === */
+/* ======================================================= */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    height: 100vh;
+}
+
+.header {
+    padding: 2rem 2rem 0 2rem;
+    flex-shrink: 0;
+}
+
+.content-area {
+    padding: 1.5rem 2rem 2rem 2rem;
+    flex-grow: 1;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+/* ... Kode untuk Modal, Pagination, Alert dan Animasi sisanya tetap sama ... */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0.3s ease, opacity 0.3s ease;
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+    display: flex;
+}
+
+/* === PERBAIKAN UNTUK MODAL CONTENT === */
+.modal-content {
+    background-color: #fefefe;
+    border: 1px solid #888;
+    width: 80%;
+    /* max-width tetap 200px, kita biarkan saja sesuai desain awal */
+    max-width: 200px; 
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    
+    /* Properti BARU untuk layout flexbox */
+    display: flex;
+    flex-direction: column;
+
+    /* Properti yang DIUBAH untuk memastikan modal tidak melebihi layar */
+    max-height: 90vh; /* Tetapkan batas tinggi maksimal untuk seluruh modal */
+
+    /* Properti yang DIHAPUS karena scroll akan ditangani oleh modal-body */
+    /* overflow-y: auto; */ 
+    
+    transition: opacity 0.3s ease;
+}
+/* File: ManajemenLabPraktikum/public/css/main-style.css */
+
+/* === PERBAIKAN UNTUK MODAL CONTENT === */
+.modal-content {
+    background-color: #fefefe;
+    border: 1px solid #888;
+    width: 80%;
+    /* max-width tetap 200px, kita biarkan saja sesuai desain awal */
+    max-width: 200px; 
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    
+    /* Properti BARU untuk layout flexbox */
+    display: flex;
+    flex-direction: column;
+
+    /* Properti yang DIUBAH untuk memastikan modal tidak melebihi layar */
+    max-height: 90vh; /* Tetapkan batas tinggi maksimal untuk seluruh modal */
+
+    /* Properti yang DIHAPUS karena scroll akan ditangani oleh modal-body */
+    /* overflow-y: auto; */ 
+    
+    transition: opacity 0.3s ease;
+}
+
+/* === PERBAIKAN UNTUK MODAL BODY === */
+.modal-body {
+    padding: 1.5rem;
+    
+    /* Properti BARU untuk membuat area ini bisa memanjang dan di-scroll */
+    flex-grow: 1; /* Memungkinkan body untuk mengisi ruang yang tersedia */
+    min-height: 0; /* Trik flexbox untuk mencegah overflow */
+
+    /* Properti yang DIUBAH/DIPASTIKAN ADA untuk scrolling internal */
+    overflow-y: auto; /* Ini akan menjadi satu-satunya area yang scroll */
+    
+    /* Properti yang DIHAPUS karena tinggi diatur oleh flexbox */
+    /* max-height: 65vh; */
+}
+.modal.active .modal-content {
+    opacity: 1;
+}
+
+
+.modal-actions .btn-cancel,
+.modal-actions .btn-danger {
+    flex: 1; /* PERBAIKAN: Membuat tombol mengisi ruang yang tersedia secara merata */
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    line-height: 20px;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.pagination-btn,
+.page-link {
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: var(--primary-green);
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination-btn:hover:not(.disabled),
+.page-link:hover:not(.active) {
+    background-color: var(--primary-green);
+    color: #fff;
+    border-color: var(--primary-green);
+}
+
+.pagination-btn.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.page-link.active {
+    background-color: var(--light-green);
+    color: var(--primary-green);
+    border-color: var(--primary-green);
+    font-weight: 600;
+}
+
+
+/* ======================================================= */
+/* === GAYA UNTUK ALERT NOTIFIKASI (FINAL FIX)         === */
+/* ======================================================= */
+
+.alert {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0.4rem 1rem !important;
+    margin-bottom: 2rem !important;
+    border-radius: 8px !important;
+    border: 1px solid #ddd !important;
+    border-left: 4px solid !important;
+    text-align: left !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    transition: opacity 0.5s ease-in-out !important;
+}
+
+.alert.fade-out {
+    opacity: 0 !important;
+}
+
+.alert-icon {
+    flex-shrink: 0 !important;
+    margin-right: 0.75rem !important;
+    width: 24px !important;
+    height: 24px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.alert-icon svg {
+    display: block !important;
+}
+
+.alert-content {
+    flex-grow: 1 !important;
+    padding: 0.5rem 0.5rem;
+}
+
+.alert-title, .alert-message {
+    margin: 0 !important;
+    line-height: 1.25 !important;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.alert-danger {
+    background-color: #FEF2F2 !important;
+    border-left-color: #EF4444 !important;
+    color: #B91C1C !important;
+}
+
+.alert-danger .alert-icon {
+    color: #EF4444 !important;
+}
+
+.alert-success {
+    background-color: #F0FDF4 !important;
+    border-left-color: #22C55E !important;
+    color: #15803D !important;
+}
+
+.alert-success .alert-icon {
+    color: #22C55E !important;
+}
+
+
+/* === GAYA STATUS BADGE (TERPUSAT) === */
+.status-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.status-menunggu-verifikasi { background-color: var(--accent-orange); }
+.status-disetujui { background-color: #16A34A; }
+.status-ditolak { background-color: #DC2626; }
+.status-selesai { background-color: var(--dark-green); }
+.status-terlambat { background-color: #DC2626; }
+.status-tepat-waktu { background-color: #16A34A; }
+
+/* Menengahkan kolom status di tabel Peminjaman Terbaru */
+.latest-loans-container th:last-child,
+.latest-loans-container td:last-child {
+    text-align: center;
+}
+
+/* ======================================================= */
+/* === STYLING UNTUK MODAL KONFIRMASI UMUM             === */
+/* ======================================================= */
+
+.modal-content.delete-modal { 
+    max-width: 400px;
+    text-align: center;
+    padding: 2rem;
+}
+
+.delete-icon-wrapper { 
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    background-color: #fee2e2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+.delete-icon-wrapper svg { 
+    width: 32px;
+    height: 32px;
+    fill: #ef4444; 
+}
+
+.modal-message { 
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 1.5rem; 
+}
+
+.modal-actions { 
+    display: flex;
+    justify-content: center;
+    gap: 1rem; 
+}
+
+.modal-actions .btn-cancel,
+.modal-actions .btn-danger {
+    flex: 1; 
+}
+
+/* GAYA TOMBOL UMUM UNTUK MODAL */
+.btn-cancel { 
+    background-color: #f0f2f5;
+    color: #555;
+    border: 1px solid #ddd;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none; /* Penting agar tidak ada garis bawah */
+}
+
+.btn-danger { 
+    background-color: #DC2626;
+    color: white;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-danger:hover { 
+    background-color: #b91c1c; 
+}
+
+/* ======================================================= */
+/* ===            GAYA TABEL UMUM                    === */
+/* ======================================================= */
+.data-table, table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+}
+
+.data-table thead,
+table thead {
+    background-color: #e6f4ea;
+}
+
+.data-table th,
+table th {
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1E4620;
+    border-bottom: 2px solid #a5d6a7;
+}
+
+.data-table td,
+table td {
+    padding: 15px;
+    border-bottom: 1px solid #e9ecef;
+    vertical-align: middle;
+}
+
+.data-table tbody tr:hover,
+table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.data-table th:last-child,
+.data-table td:last-child,
+table th:last-child,
+table td:last-child {
+    text-align: center;
+}
+/* ======================================================= */
+/* === GAYA MODAL KONFIRMASI (BERLAKU UNTUK SEMUA)     === */
+/* ======================================================= */
+
+.modal-content.delete-modal { 
+    max-width: 400px;
+    text-align: center;
+    padding: 2rem;
+}
+
+.delete-icon-wrapper { 
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    background-color: #fee2e2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+.delete-icon-wrapper svg { 
+    width: 32px;
+    height: 32px;
+    fill: #ef4444; 
+}
+
+.modal-message { 
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 1.5rem; 
+}
+
+.modal-actions { 
+    display: flex;
+    justify-content: center;
+    gap: 1rem; 
+}
+
+/* GAYA TOMBOL UMUM UNTUK MODAL */
+.btn-cancel { 
+    background-color: #f0f2f5;
+    color: #555;
+    border: 1px solid #ddd;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-danger { 
+    background-color: #DC2626;
+    color: white;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-danger:hover { 
+    background-color: #b91c1c; 
+}
+
+/* Pastikan juga Anda sudah memiliki aturan flex untuk menyamakan lebar tombol */
+.modal-actions .btn-cancel,
+.modal-actions .btn-danger {
+    flex: 1; 
+}
+/* Menonaktifkan animasi fade-in saat ada kelas no-animation */
+.no-animation {
+    animation: none !important;
+}
+.status-column {
+    text-align: center;
+    vertical-align: middle;
+}
+/* ======================================================= */
+/* ===         MODAL UBAH KATA SANDI (UMUM)            === */
+/* ======================================================= */
+
+/* Mengatur ukuran dan padding dasar modal */
+#changePasswordModal .modal-content {
+    max-width: 550px;
+    padding: 0;
+}
+
+/* Memberi gaya pada header modal */
+#changePasswordModal .modal-header {
+    background-color: var(--dark-green);
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#changePasswordModal .modal-header .modal-title {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+#changePasswordModal .modal-header .close-button {
+    color: white;
+    opacity: 0.8;
+    font-size: 2rem;
+    font-weight: normal;
+    top: 50%;
+    right: 1.5rem;
+    transform: translateY(-50%);
+    position: absolute;
+}
+
+/* Memberi padding pada area konten modal */
+#changePasswordModal .modal-body {
+    padding: 2rem;
+}
+
+/* Mengatur tata letak form agar label dan input sejajar */
+#changePasswordModal .form-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+#changePasswordModal .form-group label {
+    flex-basis: 200px; /* Menetapkan lebar tetap untuk label */
+    flex-shrink: 0;
+    text-align: left;
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+#changePasswordModal .form-group input {
+    flex-grow: 1; /* Membuat input mengisi sisa ruang */
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+#changePasswordModal .form-group input:focus {
+    outline: none;
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+/* Memberi gaya pada footer modal */
+#changePasswordModal .modal-footer {
+    padding: 1rem 1.5rem;
+    background-color: #f8f9fa;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end; /* Mendorong tombol ke kanan */
+    gap: 0.75rem;
+}
+/* ======================================================= */
+/* ===   GAYA TOMBOL UBAH SANDI (PERBAIKAN SPESIFISITAS) === */
+/* ======================================================= */
+
+/*
+ * Selektor ini sangat spesifik dan menggunakan !important
+ * untuk "memaksa" browser menerapkan gaya ini dan mengalahkan
+ * semua aturan lain yang mungkin berkonflik.
+*/
+.button-action-wrapper .btn.btn-secondary.btn-small {
+     font-size: 0.8rem;
+    background-color: #f0f2f5;
+    border: 1px solid #ddd;
+    color: #555;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    font-weight: 600 !important;
+    transition: background-color 0.2s ease !important;
+}
+
+.button-action-wrapper .btn.btn-secondary.btn-small:hover {
+    background-color: #e9ecef !important;
+}

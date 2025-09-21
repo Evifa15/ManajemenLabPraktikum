@@ -1,0 +1,851 @@
+/* ======================================================= */
+/* ===         KOMPONEN UMUM GURU PANEL                === */
+/* ======================================================= */
+
+/* Kontainer Utama untuk Konten (Card Box Putih) */
+.main-table-container,
+.dashboard-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-height: 0;
+}
+
+/* Kontrol di Atas Tabel (Wrapper untuk Search Bar) */
+.table-controls-container {
+    margin-bottom: 1.5rem;
+}
+
+/* Gaya Search Bar (Ikon di Dalam) */
+/* Gaya Search Bar dan Filter */
+.search-form-container {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    align-items: center;
+}
+
+.search-input-wrapper {
+    position: relative; /* Penting sebagai 'rumah' untuk icon */
+    display: flex;
+    flex-grow: 1; /* Membuat area pencarian memenuhi sisa ruang */
+}
+
+.search-input-wrapper input {
+    width: 100%;
+    padding: 10px 40px 10px 15px; /* Beri ruang di kanan untuk ikon */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-input-wrapper input:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+.search-input-wrapper .search-submit-icon {
+    position: absolute; /* Membuat icon 'melayang' di dalam wrapper */
+    right: 5px; /* Posisi dari kanan */
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* Tabel Data Umum */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0rem;
+}
+
+.data-table thead {
+    background-color: #e6f4ea;
+}
+
+.data-table th {
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1E4620;
+    border-bottom: 2px solid #a5d6a7;
+}
+
+.data-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.data-table td {
+    padding: 15px;
+    border-bottom: 1px solid #e9ecef;
+    vertical-align: middle;
+}
+
+.data-table small {
+    color: #666;
+    font-size: 0.85em;
+    display: block;
+    margin-top: 4px;
+}
+
+/* Tombol Aksi di dalam Tabel */
+.data-table .action-buttons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+.data-table .btn,
+.data-table .view-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease, transform 0.1s ease;
+}
+
+.data-table .btn:active {
+    transform: translateY(1px);
+}
+
+.data-table .btn.btn-success { background-color: #16A34A; }
+.data-table .btn.btn-success:hover { background-color: #148a3d; }
+.data-table .btn.btn-danger { background-color: #DC2626; }
+.data-table .btn.btn-danger:hover { background-color: #b91c1c; }
+
+.data-table .view-btn {
+    background-color: transparent;
+    padding: 6px;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    color: #6c757d;
+}
+
+.data-table .view-btn:hover {
+    background-color: #e0e0e0;
+    color: #4CAF50;
+}
+/* Menengahkan konten di kolom terakhir (Status) */
+.data-table th:last-child,
+.data-table td:last-child {
+    text-align: center;
+}
+
+/* ======================================================= */
+/* ===           HALAMAN DASHBOARD GURU                === */
+/* ======================================================= */
+
+.dashboard-top-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.overview-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.overview-card {
+    padding: 1.25rem;
+    border-radius: 12px;
+    color: white;
+}
+
+.overview-card .card-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin-bottom: 1rem;
+}
+
+.overview-card span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.overview-card p {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.overview-card.card-yellow { background-color: #F59E0B; }
+.overview-card.card-green { background-color: #16A34A; }
+.overview-card.card-dark { background-color: #334155; }
+
+.dashboard-banner {
+    background-color: #F0FDF4;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.banner-text {
+    flex-grow: 1;
+}
+
+.banner-profile-pic {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 3px solid white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.banner-profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-text h3 {
+    font-size: 2rem;
+    color: #166534;
+    margin: 0 0 5px 0;
+}
+
+.banner-text p {
+    color: #15803d;
+    margin: 0;
+}
+
+.btn-banner {
+    background-color: var(--primary-green);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    margin-top: 1.5rem;
+}
+
+.peminjaman-list-container .peminjaman-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.peminjaman-list-container .section-title {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.peminjaman-item-card {
+    background-color: #E6F4EA;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    border: 1px solid #e2e8f0;
+}
+
+.peminjaman-item-card.empty {
+    justify-content: center;
+    color: #64748B;
+}
+
+.peminjaman-item-card .item-info h5 {
+    margin: 0 0 4px 0;
+    font-weight: 600;
+    color: #166534;
+}
+
+.peminjaman-item-card .item-info .due-date {
+    font-size: 0.9rem;
+    color: #64748B;
+}
+
+.peminjaman-item-card .item-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.peminjaman-item-card .item-actions .btn {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.peminjaman-item-card .item-actions .btn-success {
+    background-color: #16A34A;
+}
+
+.peminjaman-item-card .item-actions .btn-success:hover {
+    background-color: #148a3d;
+}
+
+.peminjaman-item-card .item-actions .btn-danger {
+    background-color: #DC2626;
+}
+
+.peminjaman-item-card .item-actions .btn-danger:hover {
+    background-color: #b91c1c;
+}
+
+.btn-lihat-semua {
+    background-color: #E6F4EA;
+    color: #4CAF50;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-lihat-semua:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+/* ======================================================= */
+/* ===           HALAMAN DAFTAR SISWA WALI             === */
+/* ======================================================= */
+
+.tab-links-wrapper {
+    display: flex;
+    border-bottom: 2px solid #e9ecef;
+    margin-bottom: 1rem;
+}
+
+.tab-link {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: #6c757d;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+}
+
+.tab-link.active {
+    color: #4CAF50;
+    border-bottom-color: #4CAF50;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+
+/* ======================================================= */
+/* ===         HALAMAN DETAIL (GURU & ADMIN)           === */
+/* ======================================================= */
+
+.detail-card-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+
+}
+
+.detail-card {
+    display: flex;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%;
+    max-width: 800px;
+}
+
+/* --- Kolom Kiri (Sidebar Profil) --- */
+.detail-card .profile-sidebar {
+    background-color: #E6F4EA; /* Warna hijau muda */
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 250px;
+}
+
+.detail-card .profile-image-container {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.detail-card .profile-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.detail-card .profile-sidebar h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+/* --- Kolom Kanan (Informasi) --- */
+.detail-card .info-section {
+    padding: 30px;
+    flex-grow: 1;
+}
+
+.detail-card .info-grid-container {
+    display: grid;
+     grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+.detail-card .info-column h4 {
+    margin-top: 0;
+    color: #166534; /* Warna hijau tua */
+    font-size: 1.2rem;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+}
+
+.detail-card .detail-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.detail-card .detail-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-card .detail-label {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.detail-card .detail-value {
+    font-size: 1rem;
+    color: #333;
+    font-weight: bold;
+}
+
+/* --- Tombol Kembali --- */
+.detail-actions {
+    margin-right: -10px;
+    z-index: 10;
+}
+
+.link-kembali {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 60px;
+    background-color: var(--primary-green);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 12px 0 0 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+
+.link-kembali:hover {
+    background-color: var(--accent-orange);
+}
+
+.link-kembali svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* --- Responsif --- */
+@media (max-width: 768px) {
+    .detail-card {
+        flex-direction: column;
+    }
+    .detail-actions {
+        display: none; /* Sembunyikan tombol kembali di mobile */
+    }
+}
+
+
+/* ======================================================= */
+/* ===         MODAL FORM PENOLAKAN (GURU)             === */
+/* ======================================================= */
+
+/* Mengatur padding body modal */
+#tolakModal .modal-body {
+    padding: 1.5rem;
+}
+
+/* Menata grup form (label & textarea) */
+#tolakModal .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+#tolakModal .form-group label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+#tolakModal .form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+#tolakModal .form-group textarea:focus {
+    outline: none;
+    border-color: #DC2626; /* Warna merah saat aktif */
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/* Mengatur padding footer modal penolakan */
+#tolakModal .modal-footer {
+    padding: 1rem 1.5rem;
+    background-color: #f8f9fa;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: flex-end; /* Mendorong tombol ke kanan */
+    gap: 0.75rem; /* Memberi jarak antar tombol */
+}
+
+/* Menggunakan style tombol .btn-danger yang sudah ada secara umum */
+#tolakModal .btn-danger {
+    background-color: #DC2626;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#tolakModal .btn-danger:hover {
+    background-color: #b91c1c;
+}
+/* Style untuk Dropdown Filter */
+/* Style untuk Dropdown Filter */
+.filter-dropdown {
+    min-width: 180px;
+    padding: 10px 30px 10px 12px; /* Memberi ruang di kanan untuk ikon */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    cursor: pointer;
+    color: #555;
+
+    /* Sembunyikan panah default browser */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* Tambahkan ikon panah kustom sebagai background */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 0 24' width='24' fill='%23555'%3E%3Cpath d='M7 10l5 5 5-5H7z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+.filter-dropdown:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2); /* Menambahkan efek glow saat aktif */
+}
+/* ======================================================= */
+/* ===           KOMPONEN: BADGE STATUS                === */
+/* ======================================================= */
+
+.status-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.status-menunggu-verifikasi { background-color: #F59E0B; } /* Oranye */
+.status-disetujui { background-color: #16A34A; } /* Biru */
+.status-ditolak { background-color: #DC2626; } /* Merah */
+.status-selesai { background-color: #1E4620; } /* Hijau */
+/* ======================================================= */
+/* ===           HALAMAN PROFIL (GURU)                 === */
+/* ======================================================= */
+
+/* --- Layout Utama Dua Kolom --- */
+.profile-layout-container {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap; 
+    align-items: flex-start;
+}
+
+.profile-main-card-wrapper {
+    flex: 2.5; 
+    min-width: 400px;
+}
+
+.profile-info-container {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* --- Kartu Utama di Kiri (Form Profil) --- */
+.profile-main-card {
+    padding: 2.5rem;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.profile-info-header h4 {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark-green);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.75rem;
+}
+
+.profile-info-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Form dibuat menjadi 1 kolom */
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.profile-info-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-info-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.profile-info-group label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.profile-info-group input,
+.profile-info-group select,
+.profile-info-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.profile-info-group input:focus,
+.profile-info-group select:focus,
+.profile-info-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.profile-info-group input:read-only {
+    background-color: #f8f9fa;
+    cursor: not-allowed;
+    color: #888;
+}
+
+.profile-actions-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.btn-save {
+    background-color: var(--accent-orange);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* --- Kartu-kartu di Kolom Kanan --- */
+.profile-avatar-card {
+    background-color: var(--light-green);
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.profile-avatar-large {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    margin-bottom: 1rem;
+}
+
+.profile-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--dark-green);
+    margin: 0;
+}
+
+.profile-info-card-standalone {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+}
+
+.profile-info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.profile-info-list li span {
+    color: #6c757d;
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.profile-info-list li strong {
+    color: #333;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.divider {
+    border-top: 1px solid var(--border-color);
+    margin: 1.5rem 0;
+}
+
+.button-action-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+/* ======================================================= */
+/* ===      GAYA TOMBOL PROFIL (UBAH SANDI, DLL)     === */
+/* ======================================================= */
+
+.button-action-wrapper .btn.btn-secondary.btn-small {
+    font-size: 0.8rem;
+    padding: 8px 16px;
+    background-color: #f0f2f5;
+    border: 1px solid #ddd;
+    color: #555;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.button-action-wrapper .btn.btn-secondary.btn-small:hover {
+    background-color: #e9ecef;
+}
+.btn-submit {
+    background-color: var(--primary-green);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-submit:hover {
+    background-color: #45a049; /* Warna hijau sedikit lebih gelap */
+}
+
+.btn-cancel {
+    background-color: #f0f2f5;
+    color: #555;
+    border: 1px solid #ddd;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-cancel:hover {
+    background-color: #e9ecef;
+}

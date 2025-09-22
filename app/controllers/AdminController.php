@@ -1233,4 +1233,23 @@ public function tambahBarang()
     header('Location: ' . BASEURL . '/admin/barang');
     exit;
 }
+ public function hapusBarangMassal()
+    {
+        $this->checkAuth();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['ids'])) {
+            $ids = $_POST['ids'];
+            $barangModel = new Barang_model();
+            $rowCount = $barangModel->hapusBarangMassal($ids);
+
+            if ($rowCount > 0) {
+                Flasher::setFlash('Berhasil!', "{$rowCount} data barang berhasil dihapus.", 'success');
+            } else {
+                Flasher::setFlash('Gagal!', 'Tidak ada data barang yang dihapus.', 'danger');
+            }
+        } else {
+            Flasher::setFlash('Gagal!', 'Tidak ada data yang dipilih untuk dihapus.', 'danger');
+        }
+        header('Location: ' . BASEURL . '/admin/barang');
+        exit;
+    }
 }

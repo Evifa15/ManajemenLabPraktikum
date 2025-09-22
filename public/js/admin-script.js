@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('DEBUG: setupManajemenBarangPage() dijalankan.');
         setupModal('itemModal', 'addItemBtn', { formId: 'itemForm', actionUrl: '/admin/tambah-barang', title: 'Tambah Barang Baru' });
         setupModal('importItemModal', 'importItemBtn');
-        setupModal('importItemModal', 'importItemBtn');
+        setupBulkDelete('bulkDeleteBarangForm', 'selectAllBarang', 'row-checkbox-barang', 'bulkDeleteBarangBtn');
         const itemTable = document.querySelector('#itemTable tbody');
         const itemModal = document.getElementById('itemModal');
         const itemForm = document.getElementById('itemForm');
@@ -278,7 +278,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (target.matches('.edit-btn')) {
                 const itemId = target.dataset.id;
-                itemModalTitle.textContent = 'Ubah Data Barang';
                 itemForm.action = `${BASEURL}/admin/ubah-barang`;
                 fetch(`${BASEURL}/admin/get-barang-by-id/${itemId}`)
                     .then(response => response.json())

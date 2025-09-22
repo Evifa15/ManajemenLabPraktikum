@@ -95,7 +95,7 @@
                     <strong>Petunjuk:</strong>
                     <ul>
                         <li>Gunakan file dengan format <strong>.csv</strong>.</li>
-                        <li>Pastikan urutan kolom: <strong>Nama Kelas</strong>, <strong>NIP Wali Kelas</strong>.</li>
+                        <li>Pastikan urutan kolom: <strong>Nama Kelas</strong>, <strong>Nama Wali Kelas</strong><strong>NIP Wali Kelas</strong>.</li>
                         <li>Baris pertama (header) akan diabaikan.</li>
                         <li>Pastikan <strong>NIP Wali Kelas</strong> sudah terdaftar di tab Daftar Guru.</li>
                     </ul>

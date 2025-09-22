@@ -399,5 +399,46 @@ class Barang_model {
         $this->db->query($query);
         return $this->db->resultSet();
     }
+     /**
+     * =====================================================================
+     * FUNGSI BARU UNTUK MENGHAPUS BARANG SECARA MASSAL
+     * =====================================================================
+     */
+    public function hapusBarangMassal($ids) {
+        if (empty($ids)) {
+            return 0;
+        }
+        $placeholders = implode(',', array_fill(0, count($ids), '?'));
+
+        // Langkah 1: Ambil nama file gambar sebelum menghapus data
+        $this->db->query("SELECT gambar FROM {$this->table} WHERE id IN ({$placeholders})");
+        foreach ($ids as $k => $id) {
+            $this->db->bind($k + 1, $id);
+        }
+        $items_to_delete = $this->db->resultSet();
+
+        // Langkah 2: Hapus data dari database
+        $this->db->query("DELETE FROM {$this->table} WHERE id IN ({$placeholders})");
+        foreach ($ids as $k => $id) {
+            $this->db->bind($k + 1, $id);
+        }
+        $this->db->execute();
+        $rowCount = $this->db->rowCount();
+
+        // Langkah 3: Jika penghapusan dari DB berhasil, hapus file gambar
+        if ($rowCount > 0) {
+            foreach ($items_to_delete as $item) {
+                $gambar = $item['gambar'];
+                $filePath = APP_ROOT . '/public/img/barang/' . $gambar;
+                // Pastikan file ada dan bukan gambar default sebelum menghapus
+                if ($gambar && $gambar !== 'images.png' && file_exists($filePath)) {
+                    @unlink($filePath);
+                }
+            }
+        }
+
+        return $rowCount;
+    }
+
     
 }

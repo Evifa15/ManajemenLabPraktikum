@@ -94,6 +94,7 @@ elseif ($controller === 'admin') {
     elseif ($method === 'hapus-barang' && !empty($param1)) { $adminController->hapusBarang($param1); }
     elseif ($method === 'get-barang-by-id' && !empty($param1)) { $adminController->getBarangById($param1); } 
     elseif ($method === 'detailBarang' && !empty($param1)) { $adminController->detailBarang($param1); }
+    elseif ($method === 'hapus-barang-massal') { $adminController->hapusBarangMassal(); }
     elseif ($method === 'import-barang') { $adminController->importBarang(); } 
     elseif ($method === 'import-kelas') { $adminController->importKelas(); }
     elseif ($method === 'hapus-kelas-massal') { $adminController->hapusKelasMassal(); }

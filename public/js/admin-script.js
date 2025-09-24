@@ -1,10 +1,5 @@
-// ManajemenLabPraktikum/public/js/admin-script.js
-
 document.addEventListener('DOMContentLoaded', () => {
-
     console.log('admin-script.js dimuat.');
-
-    // Fungsi showDeleteModal dipindahkan ke sini, di luar DOMContentLoaded
     function showDeleteModal(element) {
     const siswaId = element.dataset.id;
     const deleteModal = document.getElementById('deleteModal');
@@ -18,12 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     window.showDeleteModal = showDeleteModal;
-
-    /**
-     * =================================================================
-     * FUNGSI-FUNGSI BANTUAN UMUM (GLOBAL HELPER FUNCTIONS)
-     * =================================================================
-     */
     function setupModal(modalId, openBtnId, formConfig = null) {
         const modal = document.getElementById(modalId);
         const openBtn = document.getElementById(openBtnId);
@@ -53,19 +42,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target === modal) closeModal();
         });
     }
-
     function setupBulkDelete(formId, selectAllId, rowCheckboxClass, bulkDeleteBtnId) {
         const form = document.getElementById(formId);
         if (!form) return;
         const selectAllCheckbox = document.getElementById(selectAllId);
         const bulkDeleteBtn = document.getElementById(bulkDeleteBtnId);
         if (!selectAllCheckbox || !bulkDeleteBtn) return;
-
         function toggleBulkDeleteBtn() {
             const anyChecked = form.querySelector(`.${rowCheckboxClass}:checked`);
             bulkDeleteBtn.style.display = anyChecked ? 'inline-block' : 'none';
         }
-
         form.addEventListener('change', function(event) {
             const target = event.target;
             if (target.id === selectAllId) {
@@ -81,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             toggleBulkDeleteBtn();
         });
-        
         bulkDeleteBtn.addEventListener('click', function(e) {
             e.preventDefault();
             const deleteModal = document.getElementById('deleteModal');
@@ -93,27 +78,17 @@ document.addEventListener('DOMContentLoaded', () => {
             confirmDeleteBtn.addEventListener('click', handleConfirm, { once: true });
         });
     }
-
-    /**
-     * =================================================================
-     * FUNGSI PENGATURAN UNTUK TIAP HALAMAN ADMIN
-     * =================================================================
-     */
     function setupManajemenPenggunaPage() {
         console.log('DEBUG: setupManajemenPenggunaPage() dijalankan.');
-        
         setupModal('staffModal', 'addStaffBtn', { formId: 'staffForm', actionUrl: '/admin/tambah-staff', title: 'Tambah Staff' });
         setupModal('importStaffModal', 'importStaffBtn');
         setupBulkDelete('bulkDeleteStaffForm', 'selectAllStaff', 'row-checkbox-staff', 'bulkDeleteStaffBtn');
-
         setupModal('guruModal', 'addGuruBtn', { formId: 'guruForm', actionUrl: '/admin/tambah-guru', title: 'Tambah Guru' });
         setupModal('importGuruModal', 'importGuruBtn');
         setupBulkDelete('bulkDeleteGuruForm', 'selectAllGuru', 'row-checkbox-guru', 'bulkDeleteGuruBtn');
-
         setupModal('siswaModal', 'addSiswaBtn', { formId: 'siswaForm', actionUrl: '/admin/tambah-siswa', title: 'Tambah Siswa' });
         setupModal('importSiswaModal', 'importSiswaBtn');
         setupBulkDelete('bulkDeleteSiswaForm', 'selectAllSiswa', 'row-checkbox-siswa', 'bulkDeleteSiswaBtn');
-
         const staffTableBody = document.getElementById('staffTableBody');
         const guruTableBody = document.getElementById('guruTableBody');
         const siswaTableBody = document.getElementById('siswaTableBody');
@@ -123,7 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const guruModal = document.getElementById('guruModal');
         const siswaModal = document.getElementById('siswaModal');
         const ubahPasswordModal = document.getElementById('ubahPasswordModal');
-
         if (staffTableBody) {
             staffTableBody.addEventListener('click', function(event) {
                 const target = event.target;
@@ -153,8 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                 }
             });
-        }
-        
+        }     
         if (guruTableBody) {
             guruTableBody.addEventListener('click', function(event) {
                 const target = event.target;
@@ -185,16 +158,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
-
         if (siswaTableBody) {
             siswaTableBody.addEventListener('click', function(event) {
                 const target = event.target;
                 const deleteButton = target.closest('.delete-siswa-btn');
-                const editButton = target.closest('.edit-siswa-btn');
-                
-                if (deleteButton) {
+                const editButton = target.closest('.edit-siswa-btn');    
+                 if (deleteButton) {
+                    // 1. Ambil ID siswa dari tombol yang diklik
+                    const siswaId = deleteButton.dataset.id; 
                     const confirmDeleteLink = deleteModal.querySelector('#confirmDeleteLink');
-                    confirmDeleteLink.href = `${BASEURL}/admin/hapusSiswaDariKelas/${siswaId}`;
+                    
+                    // 2. Arahkan ke URL yang benar untuk menghapus siswa
+                    confirmDeleteLink.href = `${BASEURL}/admin/hapus-siswa/${siswaId}`; 
+                    
                     deleteModal.classList.add('active');
                 }
 
@@ -243,7 +219,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     ubahPasswordModal.classList.add('active');
                 }
             });
-
             const closeBtn = ubahPasswordModal.querySelector('.close-button');
             const closeModal = () => ubahPasswordModal.classList.remove('active');
             
@@ -257,7 +232,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
-
     function setupManajemenBarangPage() {
         console.log('DEBUG: setupManajemenBarangPage() dijalankan.');
         setupModal('itemModal', 'addItemBtn', { formId: 'itemForm', actionUrl: '/admin/tambah-barang', title: 'Tambah Barang Baru' });
@@ -301,7 +275,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
     function setupManajemenKelasPage() {
         console.log('DEBUG: setupManajemenKelasPage() dijalankan.');
         setupModal('kelasModal', 'addKelasBtn', { formId: 'kelasForm', actionUrl: '/admin/tambah-kelas', title: 'Tambah Kelas' });
@@ -338,7 +311,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
     function setupDetailKelasPage() {
         console.log('DEBUG: setupDetailKelasPage() dijalankan.');
         setupModal('assignSiswaModal', 'addSiswaBtn', { formId: 'assignSiswaForm', actionUrl: '/admin/assignSiswaToKelas', title: 'Tambahkan Siswa ke Kelas' });
@@ -396,27 +368,19 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
-
-    
    const currentPath = window.location.pathname;
-
-// Halaman Manajemen Pengguna
-if (currentPath.includes('/admin/pengguna')) {
-    setupManajemenPenggunaPage();
-} 
-// Halaman Manajemen Kelas (bukan detail)
-else if (currentPath.includes('/admin/kelas') && !currentPath.includes('/admin/detailKelas')) {
-    setupManajemenKelasPage();
-} 
-// Halaman Detail Kelas
-else if (currentPath.includes('/admin/detailKelas')) {
-    setupDetailKelasPage();
-} 
-// Halaman Manajemen Barang
-else if (currentPath.includes('/admin/barang')) { // Ini akan dieksekusi jika path mengandung /admin/barang
-    setupManajemenBarangPage();
-}
-
+    if (currentPath.includes('/admin/pengguna')) {
+        setupManajemenPenggunaPage();
+    } 
+    else if (currentPath.includes('/admin/kelas') && !currentPath.includes('/admin/detailKelas')) {
+        setupManajemenKelasPage();
+    } 
+    else if (currentPath.includes('/admin/detailKelas')) {
+        setupDetailKelasPage();
+    } 
+    else if (currentPath.includes('/admin/barang')) { 
+        setupManajemenBarangPage();
+    }
     const deleteModal = document.getElementById('deleteModal');
     if (deleteModal) {
         const closeModal = () => deleteModal.classList.remove('active');
@@ -428,30 +392,21 @@ else if (currentPath.includes('/admin/barang')) { // Ini akan dieksekusi jika pa
             if (event.target === deleteModal) closeModal();
         });
     }
-
     function setupStandardSearch(formId) {
         const searchForm = document.getElementById(formId);
         if (searchForm) {
             searchForm.addEventListener('submit', () => {});
         }
     }
-    
     setupStandardSearch('searchStaffForm');
     setupStandardSearch('searchGuruForm');
     setupStandardSearch('searchSiswaForm');
     setupStandardSearch('searchAkunForm');
     setupStandardSearch('searchKelasForm');
-
-    
-
-    // --- Logika untuk Modal Ubah Kata Sandi di Halaman Profil ---
     const changePasswordBtn = document.getElementById('changePasswordBtn');
     const changePasswordModal = document.getElementById('changePasswordModal');
-
     if (changePasswordBtn && changePasswordModal) {
         const closeBtn = changePasswordModal.querySelector('.close-button');
-
-        // Tampilkan modal saat tombol diklik
         changePasswordBtn.addEventListener('click', () => {
             changePasswordModal.classList.add('active');
         });
@@ -460,14 +415,11 @@ else if (currentPath.includes('/admin/barang')) { // Ini akan dieksekusi jika pa
                     changePasswordModal.classList.remove('active');
                 });
             }
-        // Sembunyikan modal saat tombol close (x) diklik
         if (closeBtn) {
             closeBtn.addEventListener('click', () => {
                 changePasswordModal.classList.remove('active');
             });
         }
-
-        // Sembunyikan modal saat area di luar modal diklik
         window.addEventListener('click', (e) => {
             if (e.target === changePasswordModal) {
                 changePasswordModal.classList.remove('active');

@@ -8,11 +8,6 @@ class Kelas_model {
         $this->db = new Database;
     }
 
-    /**
-     * ==========================================================
-     * FUNGSI GET KELAS (PAGINASI & SEARCH)
-     * ==========================================================
-     */
     public function getKelasPaginated($offset, $limit, $keyword = null) {
         $sql = 'SELECT k.*, g.nama as nama_wali_kelas, g.nip FROM ' . $this->table . ' k LEFT JOIN guru g ON k.wali_kelas_id = g.id';
         if (!empty($keyword)) {
@@ -75,7 +70,7 @@ class Kelas_model {
         return $this->db->rowCount();
     }
 
-    // ✅ Perbaikan: Menambahkan try-catch untuk menangani error database
+    
     public function hapusKelas($id) {
         try {
             $query = "DELETE FROM " . $this->table . " WHERE id = :id";
@@ -84,7 +79,6 @@ class Kelas_model {
             $this->db->execute();
             return $this->db->rowCount();
         } catch (PDOException $e) {
-            // Mengembalikan 0 jika terjadi error (misalnya karena foreign key)
             return 0;
         }
     }
@@ -127,21 +121,13 @@ class Kelas_model {
         }
     }
 
-    /**
-     * Menghapus beberapa kelas sekaligus berdasarkan array ID.
-     * @param array $ids Array berisi ID kelas yang akan dihapus.
-     * @return int Jumlah baris yang berhasil dihapus.
-     */
     
-    // ================== PERBAIKAN DI SINI ==================
     public function hapusKelasMassal($ids) {
         if (empty($ids)) {
             return 0;
         }
-        // Buat placeholder sebanyak jumlah ID, contoh: (?,?,?)
         $placeholders = implode(',', array_fill(0, count($ids), '?'));
 
-        // Langsung hapus kelas dari tabel kelas. Baris yang error sudah dihilangkan.
         $this->db->query("DELETE FROM " . $this->table . " WHERE id IN ({$placeholders})");
         foreach ($ids as $k => $id) {
             $this->db->bind($k + 1, $id);
@@ -150,12 +136,9 @@ class Kelas_model {
         
         return $this->db->rowCount();
     }
-    // =======================================================
+    
 
     public function hapusGuruMassal() {
-        // Logika ini salah tempat dan seharusnya berada di AdminController.
-        // Biarkan seperti ini agar tidak menimbulkan error baru,
-        // namun idealnya fungsi ini dihapus dari Model.
         $this->checkAuth();
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['ids'])) {
             $ids = $_POST['ids'];
@@ -170,23 +153,15 @@ class Kelas_model {
         } else {
             Flasher::setFlash('Gagal!', 'Tidak ada data yang dipilih untuk dihapus.', 'danger');
         }
-        // Redirect kembali ke tab guru
         header('Location: ' . BASEURL . '/admin/kelas/guru');
         exit;
     }
-     /* ==========================================================
-     * FUNGSI BARU UNTUK MENGAMBIL KELAS BERDASARKAN WALI
-     * ==========================================================
-     */
     public function getKelasByWaliId($waliKelasId) {
         $this->db->query('SELECT * FROM ' . $this->table . ' WHERE wali_kelas_id = :wali_kelas_id ORDER BY nama_kelas ASC');
         $this->db->bind('wali_kelas_id', $waliKelasId);
         return $this->db->resultSet();
     }
-    /* ==========================================================
-     * FUNGSI BARU UNTUK DASHBOARD GURU
-     * ==========================================================
-     */
+    
     public function countKelasByWaliId($waliKelasId) {
         $this->db->query('SELECT COUNT(id) as total FROM ' . $this->table . ' WHERE wali_kelas_id = :wali_kelas_id');
         $this->db->bind('wali_kelas_id', $waliKelasId);

@@ -34,7 +34,7 @@
                         <th>Jumlah</th>
                         <th>Tgl Pinjam</th>
                         <th>Tgl Kembali</th>
-                        <th>Status</th>
+                        <th>Ket</th> <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,7 +55,7 @@
                             <td><?= htmlspecialchars($item['jumlah_pinjam']); ?></td>
                             <td><?= date('d/m/Y', strtotime($item['tanggal_pinjam'])); ?></td>
                             <td><?= $item['tanggal_kembali'] ? date('d/m/Y', strtotime($item['tanggal_kembali'])) : '-'; ?></td>
-                            <td>
+                            <td><?= htmlspecialchars($item['keterangan'] ?? '-'); ?></td> <td>
                                 <?php
                                     $status_class = strtolower(str_replace(' ', '-', $item['status']));
                                 ?>
@@ -73,8 +73,7 @@
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="8" style="text-align:center;">Tidak ada riwayat peminjaman dari siswa wali Anda.</td>
-                        </tr>
+                            <td colspan="9" style="text-align:center;">Tidak ada riwayat peminjaman dari siswa wali Anda.</td> </tr>
                     <?php endif; ?>
                 </tbody>
             </table>

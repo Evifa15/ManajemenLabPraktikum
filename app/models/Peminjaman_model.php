@@ -166,7 +166,7 @@ class Peminjaman_model {
      */
     public function getHistoryPaginated($offset, $limit, $filters = []) {
         $sql = "SELECT 
-                    p.id, u.username as nama_peminjam,
+                    p.id, p.keterangan, u.username as nama_peminjam,
                     CASE
                         WHEN u.role = 'siswa' THEN s.id_siswa
                         WHEN u.role = 'guru' THEN g.nip

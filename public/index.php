@@ -73,6 +73,7 @@ elseif ($controller === 'admin') {
     elseif ($method === 'ubah-staff') { $adminController->ubahStaff(); }
     elseif ($method === 'hapus-staff-massal') { $adminController->hapusStaffMassal(); }
     elseif ($method === 'import-guru') { $adminController->importGuru(); }
+    elseif ($method === 'tambah-guru') { $adminController->tambahGuru(); }
     elseif ($method === 'searchGuru') { $adminController->searchGuru(); }
     elseif ($method === 'hapus-guru' && !empty($param1)) { $adminController->hapusGuru($param1); }
     elseif ($method === 'get-guru-by-id' && !empty($param1)) { $adminController->getGuruById($param1); }

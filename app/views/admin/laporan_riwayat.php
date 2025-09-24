@@ -28,12 +28,12 @@
                         <th>Verifikator</th>
                         <th>Tgl Pinjam</th>
                         <th>Tgl Kembali</th>
-                        <th>Status</th>
+                        <th>Ket</th> <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php if (!empty($data['history'])):
-                        $no = ($data['halaman_aktif'] - 1) * 10 + 1;
+                        // ... (kode foreach)
                         foreach($data['history'] as $item): ?>
                         <tr>
                             <td><?= $no++; ?></td>
@@ -48,7 +48,7 @@
                             </td>
                             <td><?= date('d/m/Y', strtotime($item['tanggal_pinjam'])); ?></td>
                             <td><?= $item['tanggal_kembali'] ? date('d/m/Y', strtotime($item['tanggal_kembali'])) : '-'; ?></td>
-                            <td>
+                            <td><?= htmlspecialchars($item['keterangan'] ?? '-'); ?></td> <td>
                                 <?php
                                     $status_class = strtolower(str_replace(' ', '-', $item['status']));
                                     $status_display = ($item['status'] === 'Menunggu Verifikasi') ? 'Diperiksa' : htmlspecialchars($item['status']);
@@ -58,8 +58,7 @@
                         </tr>
                     <?php endforeach;
                     else: ?>
-                        <tr><td colspan="7" style="text-align: center;">Tidak ada data riwayat yang cocok.</td></tr>
-                    <?php endif; ?>
+                        <tr><td colspan="8" style="text-align: center;">Tidak ada data riwayat yang cocok.</td></tr> <?php endif; ?>
                 </tbody>
             </table>
         </div>

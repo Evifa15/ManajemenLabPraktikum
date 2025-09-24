@@ -1,313 +1,46 @@
-/* ======================================================= */
-/* === STYLING DASAR & ANIMASI                       === */
-/* ======================================================= */
-
-/* General body styling */
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background-color: #f0f2f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    overflow: hidden;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-/* Keyframe animation untuk efek fade-in dari bawah */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ======================================================= */
-/* === TAMPILAN KARTU (CARD)                         === */
-/* ======================================================= */
-
-/* Card container untuk Halaman Pilih Peran */
-.card-container {
-    background-color: white;
-    padding: 20px 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 100%;
-    max-width: 750px;
-    box-sizing: border-box;
-    opacity: 0;
-    animation: fadeInUp 0.6s ease-out forwards;
-}
-
-/* Container untuk Halaman Login */
-.login-container {
-    background-color: white;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 100%;
-    max-width: 420px;
-    box-sizing: border-box;
-    opacity: 0;
-    animation: fadeInUp 0.6s ease-out forwards;
-}
-
-/* ======================================================= */
-/* === TAMPILAN PILIH PERAN                          === */
-/* ======================================================= */
-
-/* Main title styling */
-h1 {
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 8px;
-}
-.card-container p {
-    font-size: 16px;
-    color: #666;
-    margin-top: 0;
-    margin-bottom: 30px;
-}
-.roles {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-bottom: 30px;
-}
-.role-card {
-    border: 2px solid #e0e0e0;
-    border-radius: 10px;
-    padding: 30px 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-    max-width: 160px;
-    box-sizing: border-box;
-    text-align: left;
-    position: relative;
-    transform: scale(1);
-}
-.role-card:hover {
-    border-color: #1D9E45;
-    transform: scale(1.03);
-}
-.role-card.selected {
-    border-color: #1D9E44;
-    box-shadow: 0 0 10px rgba(29, 158, 69, 0.3);
-    transform: scale(1.03);
-}
-.role-icon {
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    background-color: #f0f2f5;
-    border-radius: 50%;
-}
-.role-icon img {
-    width: 28px;
-    height: 28px;
-}
-.role-name {
-    font-weight: 600;
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 5px;
-}
-.role-description {
-    font-size: 14px;
-    color: #888;
-    line-height: 1.5;
-}
-.custom-radio {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #ccc;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: border-color 0.3s ease;
-}
-.role-card.selected .custom-radio {
-    border-color: #1D9E45;
-}
-.custom-radio::after {
-    content: '';
-    width: 10px;
-    height: 10px;
-    background-color: transparent;
-    border-radius: 50%;
-    transition: background-color 0.3s ease;
-}
-.role-card.selected .custom-radio::after {
-    background-color: #1D9E45;
-}
-.continue-btn {
-    background-color: #1D9E45;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-    width: 100%;
-    max-width: 300px;
-    margin-bottom: 0px;
-}
-.continue-btn:hover:not(:disabled) {
-    background-color: #167a36;
-    box-shadow: 0 8px 16px rgba(29, 158, 69, 0.4);
-    transform: translateY(-4px);
-}
-.continue-btn:active:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 4px 8px rgba(29, 158, 69, 0.4);
-}
-.continue-btn:disabled {
-    background-color: #a5d2b7;
-    cursor: not-allowed;
-}
-
-/* ======================================================= */
-/* === TAMPILAN LOGIN                                === */
-/* ======================================================= */
-
-.login-container h1 {
-    color: #333;
-    margin-bottom: 5px;
-    font-size: 28px;
-    font-weight: bold;
-}
-.login-container p {
-    color: #666;
-    margin-top: 0;
-    margin-bottom: 30px;
-    font-size: 14px;
-}
-.login-container form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-.notification-box {
-    text-align: center;
-    font-size: 14px;
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-.notification-box.success {
-    background-color: #e6f7e9;
-    color: #167a36;
-    border: 1px solid #1D9E45;
-}
-.notification-box.danger {
-    background-color: #fff0f0;
-    color: #e05d5d;
-    border: 1px solid #e05d5d;
-}
-.input-group {
-    position: relative;
-}
-.input-group input[type="text"],
-.input-group input[type="password"] {
-    width: 100%;
-    padding: 12px 12px 12px 40px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    box-sizing: border-box;
-    outline: none;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-.input-group input:focus {
-    border-color: #1D9E45;
-    box-shadow: 0 0 5px rgba(29, 158, 69, 0.5);
-}
-.input-group .input-icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #999;
-}
-.input-group .show-password-icon {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #999;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-.input-group .show-password-icon:hover {
-    color: #1D9E45;
-}
-.login-container button {
-    background-color: #1D9E45;
-    color: white;
-    border: none;
-    padding: 15px;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.1s ease;
-}
-.login-container button:hover {
-    background-color: #167a36;
-}
-.login-container button:active {
-    transform: translateY(1px);
-}
-.back-link {
-    text-align: center;
-    margin-top: 20px;
-}
-.back-link a {
-    color: #1D9E45;
-    text-decoration: none;
-    font-weight: 500;
-}
-.back-link a:hover {
-    text-decoration: underline;
-}
-
-/* ======================================================= */
-/* === RESPONSIVE DESIGN                             === */
-/* ======================================================= */
-
-@media (max-width: 600px) {
-    body {
-        padding: 10px;
-        align-items: flex-start;
-    }
-    .card-container, .login-container {
-        padding: 20px;
-    }
-    .roles {
-        flex-direction: column;
-        align-items: center;
-    }
-    .role-card {
-        width: 100%;
-        max-width: none;
-    }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; overflow: hidden; padding: 20px; box-sizing: border-box; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.card-container { background-color: white; padding: 20px 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); text-align: center; width: 100%; max-width: 750px; box-sizing: border-box; opacity: 0; animation: fadeInUp 0.6s ease-out forwards; }
+.login-container { background-color: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); text-align: center; width: 100%; max-width: 420px; box-sizing: border-box; opacity: 0; animation: fadeInUp 0.6s ease-out forwards; }
+h1 { font-size: 28px; color: #333; margin-bottom: 8px; }
+.card-container p { font-size: 16px; color: #666; margin-top: 0; margin-bottom: 30px; }
+.roles { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
+.role-card { border: 2px solid #e0e0e0; border-radius: 10px; padding: 30px 20px; cursor: pointer; transition: all 0.3s ease; width: 100%; max-width: 160px; box-sizing: border-box; text-align: left; position: relative; transform: scale(1); }
+.role-card:hover { border-color: #1D9E45; transform: scale(1.03); }
+.role-card.selected { border-color: #1D9E44; box-shadow: 0 0 10px rgba(29, 158, 69, 0.3); transform: scale(1.03); }
+.role-icon { margin-bottom: 15px; display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; background-color: #f0f2f5; border-radius: 50%; }
+.role-icon img { width: 28px; height: 28px; }
+.role-name { font-weight: 600; font-size: 18px; color: #555; margin-bottom: 5px; }
+.role-description { font-size: 14px; color: #888; line-height: 1.5; }
+.custom-radio { position: absolute; top: 15px; right: 15px; width: 20px; height: 20px; border: 2px solid #ccc; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: border-color 0.3s ease; }
+.role-card.selected .custom-radio { border-color: #1D9E45; }
+.custom-radio::after { content: ''; width: 10px; height: 10px; background-color: transparent; border-radius: 50%; transition: background-color 0.3s ease; }
+.role-card.selected .custom-radio::after { background-color: #1D9E45; }
+.continue-btn { background-color: #1D9E45; color: white; border: none; padding: 15px 30px; font-size: 18px; font-weight: bold; border-radius: 30px; cursor: pointer; transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; width: 100%; max-width: 300px; margin-bottom: 0px; }
+.continue-btn:hover:not(:disabled) { background-color: #167a36; box-shadow: 0 8px 16px rgba(29, 158, 69, 0.4); transform: translateY(-4px); }
+.continue-btn:active:not(:disabled) { transform: translateY(-2px); box-shadow: 4px 8px rgba(29, 158, 69, 0.4); }
+.continue-btn:disabled { background-color: #a5d2b7; cursor: not-allowed; }
+.login-container h1 { color: #333; margin-bottom: 5px; font-size: 28px; font-weight: bold; }
+.login-container p { color: #666; margin-top: 0; margin-bottom: 30px; font-size: 14px; }
+.login-container form { display: flex; flex-direction: column; gap: 15px; }
+.notification-box { text-align: center; font-size: 14px; padding: 10px; border-radius: 8px; margin-bottom: 15px; }
+.notification-box.success { background-color: #e6f7e9; color: #167a36; border: 1px solid #1D9E45; }
+.notification-box.danger { background-color: #fff0f0; color: #e05d5d; border: 1px solid #e05d5d; }
+.input-group { position: relative; }
+.input-group input[type="text"], .input-group input[type="password"] { width: 100%; padding: 12px 12px 12px 40px; border: 1px solid #ccc; border-radius: 8px; font-size: 16px; box-sizing: border-box; outline: none; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+.input-group input:focus { border-color: #1D9E45; box-shadow: 0 0 5px rgba(29, 158, 69, 0.5); }
+.input-group .input-icon {position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; fill: none; stroke: #999; stroke-width: 2; }
+.input-group .show-password-icon { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: #999; cursor: pointer; transition: color 0.3s ease; }
+.input-group .show-password-icon:hover { color: #1D9E45; }
+.login-container button { background-color: #1D9E45; color: white; border: none; padding: 15px; font-size: 18px; font-weight: bold; border-radius: 30px; cursor: pointer; transition: background-color 0.3s ease, transform 0.1s ease; }
+.login-container button:hover { background-color: #167a36; }
+.login-container button:active { transform: translateY(1px); }
+.back-link { text-align: center; margin-top: 20px; }
+.back-link a { color: #1D9E45; text-decoration: none; font-weight: 500; }
+.back-link a:hover { text-decoration: underline; }
+@media (max-width: 600px) { 
+  body { padding: 10px; align-items: flex-start; } 
+  .card-container, .login-container { padding: 20px; } 
+  .roles { flex-direction: column; align-items: center; } 
+  .role-card { width: 100%; max-width: none; } 
 }
